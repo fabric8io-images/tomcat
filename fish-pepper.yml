@@ -1,0 +1,8 @@
+---
+# Who to blame
+maintainer: "rhuss@redhat.com"
+
+# Meta info influencing the build
+fish-pepper:
+  # Docker Repo User
+  repoUser: "fabric8"
