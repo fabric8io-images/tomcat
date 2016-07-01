@@ -2,14 +2,14 @@
 fish-pepper:
   params:
     - version
-  build: "1.1.0"
+  build: "1.1.1"
   name: "fabric8/tomcat"
 
 config:
   version:
     default:
       from:
-        image: "fabric8/java-centos-openjdk8-jre:1.1.4"
+        image: "fabric8/java-centos-openjdk8-jre:1.1.5"
         repo: "https://github.com/fabric8io-images/java/tree/master/images/centos/openjdk8/jre"
       toRemove:
         - "examples"
