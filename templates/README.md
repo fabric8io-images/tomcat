@@ -8,7 +8,14 @@ During startup a directory specified by the environment variable `DEPLOY_DIR` (*
 
 For this image [Agent Bond](https://github.com/fabric8io/agent-bond) is enabled. Agent Bond exports metrics from [Jolokia](http://www.jolokia.org) and [jmx_exporter](https://github.com/prometheus/jmx_exporter).
 
-Please refer to the base image's [documentation]({{= fp.config.version.from.repo }}) for available options to tune the Java JVM.
+The agent is installed as `/opt/agent-bond/agent-bond.jar` and enables the following agents by default:
+
+* [Jolokia](http://www.jolokia.org) : version **{{= fp.jolokiaVersion }}** and port **8778**
+* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **{{= fp.jmxExporterVersion }}** and port **9779**
+
+You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
+
+{{= fp.block('agent-bond','readme',{ 'fp-no-files' : true }) }}
 
 Features:
 

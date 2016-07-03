@@ -18,10 +18,16 @@ EXPOSE 8080
 ENV TOMCAT_VERSION {{= fp.config.version.version }}
 ENV DEPLOY_DIR /maven
 
+USER root
+
+# Agent bond
+{{= fp.block("agent-bond", "install", { dest: "/opt/run-java-options" }) }}
+
 # Get and Unpack Tomcat
 RUN curl {{= url }} -o /tmp/catalina.tar.gz \
  && tar xzf /tmp/catalina.tar.gz -C /opt \
  && ln -s /opt/{{= base }}-${TOMCAT_VERSION} /opt/tomcat \
+ && chown -R jboss /opt/tomcat /opt/{{= base }}-${TOMCAT_VERSION} \
  && rm /tmp/catalina.tar.gz
 
 # Add roles
@@ -33,9 +39,14 @@ ADD deploy-and-run.sh /opt/{{= base}}-${TOMCAT_VERSION}/bin/
 RUN chmod 755 /opt/{{= base}}-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
  && rm -rf {{~toRemove :value:index}}/opt/tomcat/webapps/{{=value}} {{~}}
 
-VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
+VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
+
+# java-container-options for container specific java startup options
+{{= fp.block("run-java-sh","copy-java-container-options",{dest: "/opt/"}) }}
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
 
 CMD /opt/tomcat/bin/deploy-and-run.sh
+
+USER jboss

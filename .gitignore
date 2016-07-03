@@ -2,3 +2,5 @@
 node_modules
 *.iml
 .fp-*
+run-java.sh
+

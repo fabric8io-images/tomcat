@@ -18,5 +18,6 @@ if [ -d ${appDir} ]; then
 fi
 
 # Use faster (though more unsecure) random number generator
-export CATALINA_OPTS="${CATALINA_OPTS} $(/opt/run-java-options --escape) -Djava.security.egd=file:/dev/./urandom"
+export CATALINA_OPTS="${CATALINA_OPTS} $(/opt/run-java-options) $(/opt/java-container-options) -Djava.security.egd=file:/dev/./urandom"
+
 /opt/tomcat/bin/catalina.sh run
