@@ -9,7 +9,6 @@ ENV DEPLOY_DIR /maven
 
 USER root
 
-# Agent bond
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
 RUN mkdir -p /opt/agent-bond \
@@ -39,7 +38,6 @@ RUN chmod 755 /opt/apache-tomcat-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
 
 VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
 
-# java-container-options for container specific java startup options
 # Add java-container-options to /opt and make it executable
 COPY java-container-options /opt/java-container-options
 RUN chmod 755 /opt/java-container-options
