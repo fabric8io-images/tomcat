@@ -4,7 +4,7 @@ maintainer: "rhuss@redhat.com"
 
 # Agent bond version
 version:
-  agentBond: "0.1.3"
+  agentBond: "0.1.4"
 
 # Meta info influencing the build
 fish-pepper:
