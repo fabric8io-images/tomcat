@@ -40,7 +40,7 @@ RUN chmod 755 /opt/{{= base}}-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
 
 VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
 
-{{= fp.block("run-java-sh","copy-java-container-options",{dest: "/opt/"}) }}
+{{= fp.block("run-java-sh","copy-options",{dest: "/opt/"}) }}
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin

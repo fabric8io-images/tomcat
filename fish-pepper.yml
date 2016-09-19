@@ -16,4 +16,4 @@ blocks:
   # agent bond for export Jolokia and jmx_exporter data
   - "https://github.com/fabric8io/agent-bond.git"
   # run-java.sh for getting container specific java-options
-  - "https://github.com/fabric8io/run-java-sh.git"
+  - "https://github.com/fabric8io-images/run-java-sh.git"

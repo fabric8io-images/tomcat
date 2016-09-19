@@ -29,3 +29,10 @@ Features:
   */opt/tomcat/webapps* and then calls `{{= fp.config.runCmd}} run`
 * Sets `-Djava.security.egd=file:/dev/./urandom` for faster startup times
   (though a bit less secure)
+
+### Debugging
+
+  You can enable remote debugging by setting `JAVA_DEBUG` to any value:
+
+  * **JAVA_DEBUG** If set remote debugging will be switched on
+  * **JAVA_DEBUG_PORT** Port used for remote debugging. Default: 5005

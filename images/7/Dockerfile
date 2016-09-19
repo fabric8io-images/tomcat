@@ -38,9 +38,9 @@ RUN chmod 755 /opt/apache-tomcat-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
 
 VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
 
-# Add java-container-options to /opt and make it executable
-COPY java-container-options /opt/java-container-options
-RUN chmod 755 /opt/java-container-options
+# Add debug-options and java-container-options to /opt and make it executable
+COPY debug-options java-container-options /opt/
+RUN chmod 755 /opt/debug-options /opt/java-container-options
 
 
 ENV CATALINA_HOME /opt/tomcat
