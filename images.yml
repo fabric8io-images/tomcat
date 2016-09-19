@@ -2,7 +2,7 @@
 fish-pepper:
   params:
     - version
-  build: "1.1.4"
+  build: "1.1.5"
   name: "fabric8/tomcat"
 
 config:
