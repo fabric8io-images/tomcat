@@ -4,7 +4,7 @@ MAINTAINER rhuss@redhat.com
 
 EXPOSE 8080
 
-ENV TOMCAT_VERSION 9.0.0.M8
+ENV TOMCAT_VERSION 9.0.10
 ENV DEPLOY_DIR /maven
 
 USER root
@@ -12,7 +12,7 @@ USER root
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
 RUN mkdir -p /opt/agent-bond \
- && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/0.1.4/agent-bond-agent-0.1.4.jar \
+ && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/1.2.0/agent-bond-agent-1.2.0.jar \
           -o /opt/agent-bond/agent-bond.jar \
  && chmod 444 /opt/agent-bond/agent-bond.jar \
  && chmod 755 /opt/run-java-options
@@ -34,13 +34,15 @@ ADD tomcat-users.xml /opt/apache-tomcat-${TOMCAT_VERSION}/conf/
 ADD deploy-and-run.sh /opt/apache-tomcat-${TOMCAT_VERSION}/bin/
 
 RUN chmod 755 /opt/apache-tomcat-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
- && rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs 
+ && rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs  \
+ && chgrp -R 0 /opt/tomcat/webapps \
+ && chmod -R g=u /opt/tomcat/webapps
 
 VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
 
-# Add debug-options and java-container-options to /opt and make it executable
-COPY debug-options java-container-options /opt/
-RUN chmod 755 /opt/debug-options /opt/java-container-options
+# Add run script as /opt/run-java.sh and make it executable
+COPY run-java.sh /opt/
+RUN chmod 755 /opt/run-java.sh
 
 
 ENV CATALINA_HOME /opt/tomcat

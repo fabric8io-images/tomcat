@@ -2,9 +2,8 @@
 # Who to blame
 maintainer: "rhuss@redhat.com"
 
-# Agent bond version
 version:
-  agentBond: "0.1.4"
+  agentBond: 1.2.0
 
 # Meta info influencing the build
 fish-pepper:
@@ -14,6 +13,10 @@ fish-pepper:
 # External blocks
 blocks:
   # agent bond for export Jolokia and jmx_exporter data
-  - "https://github.com/fabric8io/agent-bond.git"
-  # run-java.sh for getting container specific java-options
-  - "https://github.com/fabric8io-images/run-java-sh.git"
+  - type: "git"
+    url: "https://github.com/fabric8io/agent-bond.git"
+    tag: v1.2.0
+ # run-java.sh for starting up Java processes
+  - type: "git"
+    url: "https://github.com/fabric8io-images/run-java-sh.git"
+    tag: v1.2.2

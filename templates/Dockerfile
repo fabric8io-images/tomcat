@@ -36,11 +36,13 @@ ADD tomcat-users.xml /opt/{{= base}}-${TOMCAT_VERSION}/conf/
 ADD deploy-and-run.sh /opt/{{= base}}-${TOMCAT_VERSION}/bin/
 
 RUN chmod 755 /opt/{{= base}}-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
- && rm -rf {{~toRemove :value:index}}/opt/tomcat/webapps/{{=value}} {{~}}
+ && rm -rf {{~toRemove :value:index}}/opt/tomcat/webapps/{{=value}} {{~}} \
+ && chgrp -R 0 /opt/tomcat/webapps \
+ && chmod -R g=u /opt/tomcat/webapps
 
 VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
 
-{{= fp.block("run-java-sh","copy-options",{dest: "/opt/"}) }}
+{{= fp.block("run-java-sh","copy",{dest: "/opt/"}) }}
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
