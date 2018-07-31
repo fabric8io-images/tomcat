@@ -57,7 +57,7 @@ Some options for integration in various environments:
 Features:
 
 * Tomcat Version: **8.5.32**
-* Java Base Image: **jboss/base-jdk:8**
+* Java Base Image: **fabric8/java-centos-openjdk8-jdk:1.5.1**
 * Port: **8080**
 * User **admin** (Password: **admin**) has been added to access the admin
   applications */host-manager* and */manager*)

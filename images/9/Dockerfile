@@ -1,4 +1,4 @@
-FROM jboss/base-jdk:8
+FROM fabric8/java-centos-openjdk8-jdk:1.5.1
 
 MAINTAINER rhuss@redhat.com
 
@@ -39,11 +39,6 @@ RUN chmod 755 /opt/apache-tomcat-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
  && chmod -R g=u /opt/tomcat/webapps
 
 VOLUME [ "/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
-
-# Add run script as /opt/run-java.sh and make it executable
-COPY run-java.sh /opt/
-RUN chmod 755 /opt/run-java.sh
-
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin

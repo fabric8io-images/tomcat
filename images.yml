@@ -2,14 +2,14 @@
 fish-pepper:
   params:
     - version
-  build: "1.1.6"
+  build: "1.2.0"
   name: "fabric8/tomcat"
 
 config:
   version:
     default:
       from:
-        image: "jboss/base-jdk:8"
+        image: "fabric8/java-centos-openjdk8-jdk:1.5.1"
       toRemove:
         - "examples"
         - "docs"
