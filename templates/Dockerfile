@@ -37,6 +37,8 @@ ADD deploy-and-run.sh /opt/{{= base}}-${TOMCAT_VERSION}/bin/
 
 RUN chmod 755 /opt/{{= base}}-${TOMCAT_VERSION}/bin/deploy-and-run.sh \
  && rm -rf {{~toRemove :value:index}}/opt/tomcat/webapps/{{=value}} {{~}} \
+ && chmod go+rx /opt/tomcat/conf /opt/{{= base }}-${TOMCAT_VERSION}/conf \
+ && chmod -R go+r /opt/tomcat/conf /opt/{{= base }}-${TOMCAT_VERSION}/conf \
  && chgrp -R 0 /opt/tomcat/webapps \
  && chmod -R g=u /opt/tomcat/webapps
 
